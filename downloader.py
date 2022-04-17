@@ -28,8 +28,7 @@ class Downloader:
         :type string: Text
         :param allowed_pattern:
         """
-        result = slugify.slugify(string, lowercase=False, regex_pattern=allowed_pattern)
-        return result
+        return slugify.slugify(string, lowercase=False, regex_pattern=allowed_pattern)
 
     def __init__(self, download_dir, http_settings=None):
         self._download_dir = download_dir
@@ -53,8 +52,7 @@ class Downloader:
         rel_filename_parts = [url_parts.netloc] + [i for i in url_parts.path.split("/")[1:] if i]
         filtered_parts = [self.filter_filename_part(p) for p in rel_filename_parts]
         rel_filename = os.path.sep.join(filtered_parts)
-        filename = os.path.join(self._download_dir, rel_filename)
-        return filename
+        return os.path.join(self._download_dir, rel_filename)
 
     def url_and_file_size_diff(self, uri, filename):
         """

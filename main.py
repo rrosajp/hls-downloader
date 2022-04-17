@@ -38,7 +38,7 @@ def download_files_from_playlist(m3u8list):
     """
     for media in m3u8list.media:
         if media.absolute_uri:
-            DESCRIPTION["MEDIA." + media.type].append(media.absolute_uri)
+            DESCRIPTION[f"MEDIA.{media.type}"].append(media.absolute_uri)
             process_playlist_by_uri(media.absolute_uri)
 
     for iframe_playlist in m3u8list.iframe_playlists:
@@ -146,8 +146,7 @@ def parse_args():
     parser.add_argument("download_dir", help="Path to save files")
     parser.add_argument("--ignore-ssl", default=False, action="store_true", help="Ignore SSL verification")
     parser.add_argument("-v", "--verbose", action="store_true", help="Be more verbose")
-    kwargs = vars(parser.parse_args())
-    return kwargs
+    return vars(parser.parse_args())
 
 
 if __name__ == "__main__":
